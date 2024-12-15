@@ -29,4 +29,24 @@ public class AccountService {
 
         return accountRepository.findByUsernameAndPassword(account.getUsername(), account.getPassword());
     }
+
+    public Account verifyCridentials(Account account){
+
+        Account foundAccount = accountRepository.findByUsernameAndPassword(account.getUsername(), account.getPassword());
+        if( foundAccount == null){
+            return null;
+        }
+
+        return foundAccount;
+    }
+
+    public Boolean isPoster(int accountId){
+
+        Account account = accountRepository.findByAccountId(accountId); 
+        if(account != null){
+            return true;
+        }
+            
+        return false;
+    }
 }
